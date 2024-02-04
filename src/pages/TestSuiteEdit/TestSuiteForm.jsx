@@ -47,7 +47,7 @@ export default function TestSuiteForm({ suite }) {
                 type='text'
                 name='name'
                 value={editSuiteName}
-                onChange={(event) => {}}
+                onChange={(event) => setEditSuiteName(event.target.value)}
               />
             </div>
             <h2 className='font-semibold'>Test Plans</h2>
