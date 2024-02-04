@@ -272,7 +272,7 @@ describe('TestSuiteEdit Component', () => {
           instruction_count: 31,
         },
         {
-          test_name: '',
+          test_name: 'new test',
           browser: 'chrome',
           instruction_count: 1,
         },
@@ -291,9 +291,6 @@ describe('TestSuiteEdit Component', () => {
     const browserInput = within(secondPlan).getByTestId(
       'edit-plan-browser-input'
     );
-    const instructionsInput = within(secondPlan).getByTestId(
-      'edit-plan-instructions-input'
-    );
 
     fireEvent.change(nameInput, {
       target: { value: 'Changed' },
@@ -311,6 +308,12 @@ describe('TestSuiteEdit Component', () => {
     // Add new test plan
     const addButton = screen.getByTestId('edit-plan-add');
     fireEvent.click(addButton);
+    const lastPlan = screen.getAllByTestId('edit-form-test-plan').pop();
+    const lastPlanNameInput = within(lastPlan).getByTestId(
+      'edit-plan-name-input'
+    );
+
+    fireEvent.change(lastPlanNameInput, { target: { value: 'new test' } });
 
     // Try with changes
     const saveButton = screen.getByTestId('edit-test-suite-save');
@@ -318,5 +321,22 @@ describe('TestSuiteEdit Component', () => {
     fireEvent.click(saveButton);
 
     expect(consoleLogSpy).toBeCalledWith(expectedResultChanges);
+  });
+
+  it('when trying to submit invalid test suite edit it throws an error and does not submit', () => {
+    const consoleLogSpy = jest.spyOn(console, 'error').mockImplementation();
+
+    render(<TestSuiteForm suite={editedTestSuite} onBack={onBack} />);
+
+    // Add new test plan
+    const addButton = screen.getByTestId('edit-plan-add');
+    fireEvent.click(addButton);
+
+    // Try with changes
+    const saveButton = screen.getByTestId('edit-test-suite-save');
+
+    fireEvent.click(saveButton);
+
+    expect(consoleLogSpy).toBeCalledWith('Invalid edit please fix');
   });
 });

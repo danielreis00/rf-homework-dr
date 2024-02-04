@@ -22,7 +22,32 @@ export default function TestSuiteForm({ suite, onBack }) {
       })),
     };
 
-    console.log(JSON.stringify(payload));
+    // Simplistic validation
+    const validator = (payload) => {
+      const { test_suite_name: name, test_plans: plans } = payload;
+      let isValid = true;
+
+      if (name.length === 0 || plans.length === 0) return false;
+
+      for (let i = 0; i < plans.length; i++) {
+        const current = plans[i];
+
+        if (current.test_name.length === 0 || current.instruction_count < 1)
+          return false;
+      }
+
+      return isValid;
+    };
+
+    const isValid = validator(payload);
+
+    // If valid submits
+    if (isValid) {
+      console.log(JSON.stringify(payload));
+    } else {
+      //If not throws an error but should proper display UI feedback of course
+      console.error('Invalid edit please fix');
+    }
   };
 
   const handleEditPlanChange = (id) => {
