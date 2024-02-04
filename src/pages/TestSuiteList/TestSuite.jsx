@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import TestPlans from './TestPlans';
+import { Link } from 'react-router-dom';
 
 export default function TestSuite({ suite }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -20,7 +21,13 @@ export default function TestSuite({ suite }) {
             </div>
             <div className='flex-1 text-left'>{name}</div>
             <div>{plans.length} steps</div>
-            <div>edit</div>
+            <Link
+              to={`/test_suites/${suite.id}`}
+              state={{ suite }}
+              data-testid='test-suite-edit'
+            >
+              Edit
+            </Link>
           </div>
         </header>
         {isExpanded ? (

@@ -1,7 +1,14 @@
 import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import TestSuiteForm from './TestSuiteForm';
 
 export default function TestSuiteEdit() {
-  let { id } = useParams();
+  const { id } = useParams();
+  const { state } = useLocation();
 
-  return <div>Edit {id}</div>;
+  return (
+    <div>
+      <TestSuiteForm suite={state.suite} />
+    </div>
+  );
 }
