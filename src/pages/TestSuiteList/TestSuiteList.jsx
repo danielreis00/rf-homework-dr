@@ -1,24 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import TestSuite from './TestSuite';
+import fetcher from '../../utils/fetcher';
 
 export default function TestSuiteList() {
   const [suites, setSuites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://localhost:3456/test_suites')
-      .then((response) => response.json())
-      .then((data) => setSuites(data))
-      .catch((error) => console.error('Error fetching data:', error))
-      .finally(() => setIsLoading(false));
+    (async () => {
+      let data = [];
+
+      setIsLoading(true);
+      try {
+        data = await fetcher('http://localhost:3456/test_suites');
+      } catch {
+        console.error('Error fetching data');
+      } finally {
+        setSuites(data);
+        setIsLoading(false);
+      }
+    })();
   }, []);
 
   if (isLoading) {
-    return <div>Is Loading</div>;
+    return <div data-testid='list-is-loading'>Is Loading</div>;
   }
 
   if (suites.length === 0) {
-    return <div>Add your first test suite</div>;
+    return <div data-testid='list-is-empty'>Add your first test suite</div>;
   }
 
   return (
