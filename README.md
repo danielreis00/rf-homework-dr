@@ -1,5 +1,23 @@
 # Daniel Reis @RF
 
+Running instructions:
+
+I used the template provided so to run it is exactly the same you would run your template
+
+Before
+
+> nvm use
+> yarn install
+
+To run the app
+
+> yarn run start
+
+To run the tests
+
+> yarn run test
+
+Remarks:
 Todo
 
 # Rainforest Frontend Homework
