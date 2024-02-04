@@ -116,6 +116,19 @@ export default function TestSuiteForm({ suite }) {
                 className='p-2 text-blue-600 border rounded'
                 onClick={(e) => {
                   e.preventDefault();
+                  const newTestPlanSkeleton = {
+                    id: uuidv4(),
+                    test_name: '',
+                    browser: 'chrome',
+                    instruction_count: 1,
+                  };
+
+                  setEditPlans((prevList) => {
+                    const newList = [...prevList];
+                    newList.push(newTestPlanSkeleton);
+
+                    return newList;
+                  });
                 }}
               >
                 + Add Plan
