@@ -24,9 +24,13 @@ To run the tests
 - There are some features that were simplified because I believe it was out of the scope of the assignment (example: the form validation)
 - There are also some obvious problems that weren't handled because I believe it was out of the scope of the assignment (example: accessing an edit URL directly instead of clicking on the Edit link)
 
-|
-|
-|
+## Demo:
+
+Small video demo of my solution: https://streamable.com/qjl06j
+
+Really looking to the review interview :)
+
+||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 # Rainforest Frontend Homework
 
