@@ -12,6 +12,25 @@ export default function TestSuiteForm({ suite }) {
     event.preventDefault();
   };
 
+  const handleEditPlanChange = (id) => {
+    return (event) => {
+      event.preventDefault();
+
+      const fieldName = event.target.getAttribute('name');
+      const fieldValue = event.target.value;
+
+      setEditPlans((prevEditPlans) =>
+        prevEditPlans.map((plan) => {
+          if (plan.id === id) {
+            return { ...plan, [fieldName]: fieldValue };
+          }
+
+          return plan;
+        })
+      );
+    };
+  };
+
   return (
     <div className='flex flex-col items-center p-10'>
       <section className='rounded border border-slate-200'>
@@ -48,14 +67,14 @@ export default function TestSuiteForm({ suite }) {
                         type='text'
                         name='test_name'
                         value={editPlan.test_name}
-                        onChange={() => {}}
+                        onChange={handleEditPlanChange(editPlan.id)}
                       />
                     </div>
                     <div className='col-span-2'>
                       <select
                         name='browser'
                         value={editPlan.browser}
-                        onChange={() => {}}
+                        onChange={handleEditPlanChange(editPlan.id)}
                         className='w-full py-1 px-3 border border-slate-400 rounded-sm h-[32px]'
                       >
                         <option value='chrome'>Chrome</option>
@@ -73,7 +92,7 @@ export default function TestSuiteForm({ suite }) {
                         required='required'
                         placeholder='Enter a step count...'
                         name='instruction_count'
-                        onChange={() => {}}
+                        onChange={handleEditPlanChange(editPlan.id)}
                         value={editPlan.instruction_count}
                       ></input>
                     </div>
