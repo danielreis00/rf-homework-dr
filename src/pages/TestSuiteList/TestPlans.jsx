@@ -3,10 +3,18 @@ export default function TestPlans({ plans }) {
     <div className='grid grid-flow-row gap-1'>
       {plans.map((plan, idx) => {
         return (
-          <div key={idx} className='grid grid-cols-4 text-left'>
-            <div className='col-span-2'>{plan.test_name}</div>
-            <div>{plan.browser}</div>
-            <div>{plan.instruction_count}</div>
+          <div
+            key={idx}
+            className='grid grid-cols-4 text-left'
+            data-testid='test-plans-item'
+          >
+            <div data-testid='test-plans-item-name' className='col-span-2'>
+              {plan.test_name}
+            </div>
+            <div data-testid='test-plans-item-browser'>{plan.browser}</div>
+            <div data-testid='test-plans-item-instructions'>
+              {plan.instruction_count} steps
+            </div>
           </div>
         );
       })}

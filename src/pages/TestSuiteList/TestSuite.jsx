@@ -20,7 +20,7 @@ export default function TestSuite({ suite }) {
               <ExpandIcon isExpanded={isExpanded} />
             </div>
             <div className='flex-1 text-left'>{name}</div>
-            <div>{plans.length} steps</div>
+            <div>{plans.length} tests</div>
             <Link
               to={`/test_suites/${suite.id}`}
               state={{ suite }}
