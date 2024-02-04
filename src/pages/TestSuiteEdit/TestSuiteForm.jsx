@@ -14,7 +14,12 @@ export default function TestSuiteForm({ suite, onBack }) {
     const payload = {
       id,
       test_suite_name: editSuiteName,
-      test_plans: editPlans,
+      // need to remove the local id before sending to server
+      test_plans: editPlans.map((plan) => ({
+        test_name: plan.test_name,
+        browser: plan.browser,
+        instruction_count: plan.instruction_count,
+      })),
     };
 
     console.log(JSON.stringify(payload));
@@ -43,7 +48,9 @@ export default function TestSuiteForm({ suite, onBack }) {
     <div className='flex flex-col items-center p-10'>
       <section className='rounded border border-slate-200'>
         <header className='bg-slate-200 w-full h-[40px] flex p-10 items-center'>
-          <h1 className='text-xl font-semibold'>Edit Test Suite #{id}</h1>
+          <h1 data-testid='edit-form-title' className='text-xl font-semibold'>
+            Edit Test Suite #{id}
+          </h1>
         </header>
         <section className='p-10'>
           <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
@@ -51,6 +58,7 @@ export default function TestSuiteForm({ suite, onBack }) {
             <div className='flex flex-col gap-2'>
               <label>Name:</label>
               <input
+                data-testid='edit-form-suite-name-input'
                 className='w-full py-1 px-3 border border-slate-400 rounded-sm h-[32px]'
                 type='text'
                 name='name'
@@ -67,9 +75,14 @@ export default function TestSuiteForm({ suite, onBack }) {
               </div>
               {editPlans.map((editPlan) => {
                 return (
-                  <div key={editPlan.id} className='grid grid-cols-9 gap-2'>
+                  <div
+                    key={editPlan.id}
+                    className='grid grid-cols-9 gap-2'
+                    data-testid='edit-form-test-plan'
+                  >
                     <div className='col-span-4'>
                       <input
+                        data-testid='edit-plan-name-input'
                         autoComplete='off'
                         className='w-full py-1 px-3 border border-slate-400 rounded-sm h-[32px]'
                         type='text'
@@ -80,6 +93,7 @@ export default function TestSuiteForm({ suite, onBack }) {
                     </div>
                     <div className='col-span-2'>
                       <select
+                        data-testid='edit-plan-browser-input'
                         name='browser'
                         value={editPlan.browser}
                         onChange={handleEditPlanChange(editPlan.id)}
@@ -93,6 +107,7 @@ export default function TestSuiteForm({ suite, onBack }) {
                     </div>
                     <div className='col-span-2'>
                       <input
+                        data-testid='edit-plan-instructions-input'
                         type='number'
                         autoComplete='off'
                         min={1}
@@ -106,6 +121,7 @@ export default function TestSuiteForm({ suite, onBack }) {
                     </div>
                     <div>
                       <button
+                        data-testid='edit-plan-delete'
                         className=' text-red-600  h-[32px]'
                         onClick={(e) => {
                           e.preventDefault();
@@ -121,6 +137,7 @@ export default function TestSuiteForm({ suite, onBack }) {
                 );
               })}
               <button
+                data-testid='edit-plan-add'
                 className='p-2 text-blue-600 border rounded'
                 onClick={(e) => {
                   e.preventDefault();
@@ -143,6 +160,7 @@ export default function TestSuiteForm({ suite, onBack }) {
               </button>
               <footer className='flex justify-center items-center gap-10 pt-10'>
                 <button
+                  data-testid='edit-test-suite-cancel'
                   className='text-blue-600'
                   onClick={(e) => {
                     e.preventDefault();
@@ -151,7 +169,10 @@ export default function TestSuiteForm({ suite, onBack }) {
                 >
                   Cancel
                 </button>
-                <button className='h-[40px] w-[100px] rounded p-2 bg-green-600 text-white'>
+                <button
+                  data-testid='edit-test-suite-save'
+                  className='h-[40px] w-[100px] rounded p-2 bg-green-600 text-white'
+                >
                   Save
                 </button>
               </footer>
