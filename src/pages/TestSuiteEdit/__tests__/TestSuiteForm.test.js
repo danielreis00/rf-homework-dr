@@ -217,7 +217,7 @@ describe('TestSuiteEdit Component', () => {
     });
   });
 
-  it('allows to cancel the edit clicking on cancel button', () => {});
+  it('when clicking on cancel goes back to the suite_list', () => {});
 
   it('when clicking on save without changing anything it prints the serialized test suite', () => {
     const consoleLogSpy = jest.spyOn(console, 'log');
@@ -234,5 +234,89 @@ describe('TestSuiteEdit Component', () => {
     expect(consoleLogSpy).toBeCalledWith(expectedResult);
   });
 
-  it('when clicking on save after changes it prints the serialized edited test suite', () => {});
+  it('when clicking on save after changes it prints the serialized edited test suite', () => {
+    const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation();
+
+    render(<TestSuiteForm suite={editedTestSuite} onBack={onBack} />);
+
+    // Try with some changes
+    const newTestSuiteNameSave =
+      'Test Plan for Daniel Reis to join Rainforest QA';
+    const expectedResultChanges = JSON.stringify({
+      id: 1,
+      test_suite_name: newTestSuiteNameSave,
+      test_plans: [
+        {
+          test_name: 'Changed',
+          browser: 'chrome',
+          instruction_count: 13,
+        },
+        {
+          test_name: 'Test Plan Harbor Still Determine',
+          browser: 'edge',
+          instruction_count: 30,
+        },
+        {
+          test_name: 'Test Plan Loose Difficulty Dirty Kept',
+          browser: 'firefox',
+          instruction_count: 14,
+        },
+        {
+          test_name: 'Test Plan Extra Collect Entire Milk',
+          browser: 'safari',
+          instruction_count: 35,
+        },
+        {
+          test_name: 'Test Plan Major Pet Program Dangerous',
+          browser: 'edge',
+          instruction_count: 31,
+        },
+        {
+          test_name: '',
+          browser: 'chrome',
+          instruction_count: 1,
+        },
+      ],
+    });
+
+    // Change test suite name
+    const testSuiteNameInput = screen.getByTestId('edit-form-suite-name-input');
+    fireEvent.change(testSuiteNameInput, {
+      target: { value: newTestSuiteNameSave },
+    });
+
+    // Change Second element
+    const secondPlan = screen.getAllByTestId('edit-form-test-plan')[1];
+    const nameInput = within(secondPlan).getByTestId('edit-plan-name-input');
+    const browserInput = within(secondPlan).getByTestId(
+      'edit-plan-browser-input'
+    );
+    const instructionsInput = within(secondPlan).getByTestId(
+      'edit-plan-instructions-input'
+    );
+
+    fireEvent.change(nameInput, {
+      target: { value: 'Changed' },
+    });
+    fireEvent.change(browserInput, {
+      target: { value: 'chrome' },
+    });
+
+    // Delete first
+    const firstPlan = screen.getAllByTestId('edit-form-test-plan')[0];
+    const deleteButton = within(firstPlan).getByTestId('edit-plan-delete');
+
+    fireEvent.click(deleteButton);
+
+    // Add new test plan
+    const addButton = screen.getByTestId('edit-plan-add');
+    fireEvent.click(addButton);
+
+    // Try with changes
+    const saveButton = screen.getByTestId('edit-test-suite-save');
+
+    fireEvent.click(saveButton);
+
+    expect(consoleLogSpy).toBeCalledWith(expectedResultChanges);
+  });
 });
