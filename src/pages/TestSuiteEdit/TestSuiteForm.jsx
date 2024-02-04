@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-export default function TestSuiteForm({ suite }) {
+export default function TestSuiteForm({ suite, onBack }) {
   const { id, test_suite_name, test_plans } = suite;
   const [editSuiteName, setEditSuiteName] = useState(test_suite_name);
   const [editPlans, setEditPlans] = useState(
@@ -10,6 +10,14 @@ export default function TestSuiteForm({ suite }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    const payload = {
+      id,
+      test_suite_name: editSuiteName,
+      test_plans: editPlans,
+    };
+
+    console.log(JSON.stringify(payload));
   };
 
   const handleEditPlanChange = (id) => {
@@ -138,6 +146,7 @@ export default function TestSuiteForm({ suite }) {
                   className='text-blue-600'
                   onClick={(e) => {
                     e.preventDefault();
+                    onBack();
                   }}
                 >
                   Cancel

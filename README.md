@@ -1,23 +1,24 @@
 # Daniel Reis @RF
 
-Running instructions:
+## Running instructions:
 
 I used the template provided so to run it is exactly the same you would run your template
 
 Before
 
-> nvm use
-> yarn install
+`nvm use`
+`yarn install` _(or npm)_
 
 To run the app
 
-> yarn run start
+`yarn run start` _(to use npm you need to change start.sh command)_
 
 To run the tests
 
-> yarn run test
+`yarn run test`
 
-Remarks:
+## Remarks:
+
 Todo
 
 # Rainforest Frontend Homework
