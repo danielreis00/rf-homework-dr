@@ -2,12 +2,12 @@
 
 ## Running instructions:
 
-I used the template provided so to run it is exactly the same you would run your template
+I used the template provided, thus to run it is exactly the same you would run your template
 
 Before
 
-`nvm use`
-`yarn install` _(or npm)_
+- `nvm use`
+- `yarn install` _(or npm)_
 
 To run the app
 
@@ -23,6 +23,10 @@ To run the tests
 - I also decided to use react-router to create a simple routing system to allow the edit of a test suite in a different page. Initially, I even thought about using inline edit and wouldn't need it, but reading the description of the assignment, I ended up doing like this because I believe that was the intended.
 - There are some features that were simplified because I believe it was out of the scope of the assignment (example: the form validation)
 - There are also some obvious problems that weren't handled because I believe it was out of the scope of the assignment (example: accessing an edit URL directly instead of clicking on the Edit link)
+
+|
+|
+|
 
 # Rainforest Frontend Homework
 
