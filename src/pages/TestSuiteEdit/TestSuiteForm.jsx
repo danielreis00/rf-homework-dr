@@ -101,6 +101,9 @@ export default function TestSuiteForm({ suite }) {
                         className=' text-red-600  h-[32px]'
                         onClick={(e) => {
                           e.preventDefault();
+                          setEditPlans((prevList) =>
+                            prevList.filter((plan) => plan.id !== editPlan.id)
+                          );
                         }}
                       >
                         Delete
