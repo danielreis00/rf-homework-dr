@@ -77,7 +77,7 @@ export default function TestSuiteForm({ suite, onBack }) {
   return (
     <div className='flex flex-col items-center p-10'>
       <section className='rounded border border-slate-200'>
-        <header className='bg-slate-200 w-full h-[40px] flex p-10 items-center'>
+        <header className='bg-green-200 w-full h-[40px] flex p-10 items-center'>
           <h1 data-testid='edit-form-title' className='text-xl font-semibold'>
             Edit Test Suite #{id}
           </h1>
@@ -85,7 +85,7 @@ export default function TestSuiteForm({ suite, onBack }) {
         <section className='p-10'>
           <form onSubmit={handleSubmit} className='flex flex-col gap-2'>
             <h2 className='font-semibold'>Test Suite</h2>
-            <div className='flex flex-col gap-2'>
+            <div className='flex flex-col gap-2 pb-10'>
               <label>Name:</label>
               <input
                 data-testid='edit-form-suite-name-input'

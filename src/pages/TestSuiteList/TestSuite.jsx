@@ -18,8 +18,8 @@ export default function TestSuite({ suite }) {
         setIsExpanded((prev) => !prev);
       }}
     >
-      <section className='border rounded border-slate-300'>
-        <header className='bg-slate-200 p-3 rounded'>
+      <section className='border rounded border-green-300'>
+        <header className='bg-green-50 p-3 rounded'>
           <div className='flex gap-5 items-center'>
             <div>
               <ExpandIcon isExpanded={isExpanded} />
