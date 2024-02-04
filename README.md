@@ -11,15 +11,18 @@ Before
 
 To run the app
 
-`yarn run start` _(to use npm you need to change start.sh command)_
+`yarn start` _(to use npm you need to change start.sh command)_
 
 To run the tests
 
-`yarn run test`
+`yarn test`
 
 ## Remarks:
 
-Todo
+- I tried to keep the solution minimalistic and because of that I only added tailwindcss for basic styling
+- I also decided to use react-router to create a simple routing system to allow the edit of a test suite in a different page. Initially, I even thought about using inline edit and wouldn't need it, but reading the description of the assignment, I ended up doing like this because I believe that was the intended.
+- There are some features that were simplified because I believe it was out of the scope of the assignment (example: the form validation)
+- There are also some obvious problems that weren't handled because I believe it was out of the scope of the assignment (example: accessing an edit URL directly instead of clicking on the Edit link)
 
 # Rainforest Frontend Homework
 
