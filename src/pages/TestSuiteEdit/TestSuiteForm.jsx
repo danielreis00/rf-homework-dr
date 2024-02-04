@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
+/**
+ * TestSuiteForm component that allows edit a test suite
+ * but could be easily adapted to be reused to add new ones too
+ */
 export default function TestSuiteForm({ suite, onBack }) {
   const { id, test_suite_name, test_plans } = suite;
   const [editSuiteName, setEditSuiteName] = useState(test_suite_name);
   const [editPlans, setEditPlans] = useState(
-    test_plans.map((plan) => ({ ...plan, id: uuidv4() }))
+    test_plans.map((plan) => ({ ...plan, id: uuidv4() })) // Adding a local id to be used mainly as a react key when listing the items
   );
 
   const handleSubmit = (event) => {
@@ -14,7 +18,7 @@ export default function TestSuiteForm({ suite, onBack }) {
     const payload = {
       id,
       test_suite_name: editSuiteName,
-      // need to remove the local id before sending to server
+      // Remove the local id before sending to server
       test_plans: editPlans.map((plan) => ({
         test_name: plan.test_name,
         browser: plan.browser,
@@ -22,7 +26,7 @@ export default function TestSuiteForm({ suite, onBack }) {
       })),
     };
 
-    // Simplistic validation
+    // Really simplistic validation
     const validator = (payload) => {
       const { test_suite_name: name, test_plans: plans } = payload;
       let isValid = true;
@@ -50,6 +54,7 @@ export default function TestSuiteForm({ suite, onBack }) {
     }
   };
 
+  // Generic handler for edit plan field changes
   const handleEditPlanChange = (id) => {
     return (event) => {
       event.preventDefault();
@@ -192,7 +197,7 @@ export default function TestSuiteForm({ suite, onBack }) {
                     onBack();
                   }}
                 >
-                  Cancel
+                  Back
                 </button>
                 <button
                   data-testid='edit-test-suite-save'

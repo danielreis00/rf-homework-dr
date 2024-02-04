@@ -1,3 +1,7 @@
+/**
+ * TestPlans components renders a list of test plans
+ * displaying the name, browser and steps count
+ */
 export default function TestPlans({ plans }) {
   return (
     <div className='grid grid-flow-row gap-1'>

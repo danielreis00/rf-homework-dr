@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import TestSuite from './TestSuite';
 import fetcher from '../../utils/fetcher';
 
+/**
+ * TestSuiteList component that renders a list of TestSuite components
+ */
 export default function TestSuiteList() {
   const [suites, setSuites] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -32,7 +35,7 @@ export default function TestSuiteList() {
 
   return (
     <div className='p-10'>
-      <h1>Test Suites:</h1>
+      <h1 className='font-semibold py-5 text-xl'>Test Suites:</h1>
       <div data-testid='test-suite-list' className='flex flex-col gap-3'>
         {suites.map((suite) => (
           <TestSuite key={suite.id} suite={suite} />

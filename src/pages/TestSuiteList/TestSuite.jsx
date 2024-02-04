@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import TestPlans from './TestPlans';
 import { Link } from 'react-router-dom';
 
+/**
+ * TestSuite component that allows displaying a test suite information
+ * (name, test count and each test plan inside it)
+ */
 export default function TestSuite({ suite }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const { test_suite_name: name, test_plans: plans } = suite;
@@ -25,6 +29,7 @@ export default function TestSuite({ suite }) {
             </div>
             <div data-testid='test-suite-count'>{plans.length} tests</div>
             <Link
+              className='text-blue-600'
               to={`/test_suites/${suite.id}`}
               state={{ suite }}
               data-testid='test-suite-edit'
