@@ -1,9 +1,14 @@
+# Daniel Reis @RF
+
+Todo
+
 # Rainforest Frontend Homework
 
 At Rainforest our front-end applications often exchange JSON data with various RESTful APIs. In
 this homework we provide a sample API with a single endpoint and ask you to create a UI to display and edit test suite plans.
 
 ## Test suites API
+
 You'll be provided with a `/test_suites` API endpoint (accessible from `localhost:3456`) that returns a JSON array of items in the following format:
 
 ```json
@@ -58,6 +63,7 @@ Write a single page application that retrieves and displays the list of test sui
 ![](./mockup.png)
 
 Clicking on "edit" next to a test suite should bring up an interface for the user to edit the selected test suite's name and test plans:
+
 - The user should be able to change the test suite name.
 - The user should be able to add or remove any test plans.
 - The user should be able to edit any of the test plan's fields.
@@ -70,6 +76,7 @@ On submission, print the serialized JSON into the console.
 After submission, the user should be able to return to the main list and edit other test plans.
 
 Validations:
+
 - `test_suite_name` and `test_name` should not be empty
 - a test suite must contain at least one test plan
 - `browser` must be one of `"chrome"`, `"firefox"`, `"safari"`, or `"edge"`
