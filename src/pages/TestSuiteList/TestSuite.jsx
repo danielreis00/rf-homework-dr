@@ -8,6 +8,7 @@ export default function TestSuite({ suite }) {
 
   return (
     <button
+      data-testid='test-suite-card'
       onClick={(e) => {
         e.preventDefault();
         setIsExpanded((prev) => !prev);
@@ -19,8 +20,10 @@ export default function TestSuite({ suite }) {
             <div>
               <ExpandIcon isExpanded={isExpanded} />
             </div>
-            <div className='flex-1 text-left'>{name}</div>
-            <div>{plans.length} tests</div>
+            <div data-testid='test-suite-title' className='flex-1 text-left'>
+              {name}
+            </div>
+            <div data-testid='test-suite-count'>{plans.length} tests</div>
             <Link
               to={`/test_suites/${suite.id}`}
               state={{ suite }}
@@ -31,7 +34,7 @@ export default function TestSuite({ suite }) {
           </div>
         </header>
         {isExpanded ? (
-          <div className='py-5 px-14'>
+          <div className='py-5 px-14' data-testid='test-suite-plans-section'>
             <TestPlans plans={plans} />
           </div>
         ) : null}
